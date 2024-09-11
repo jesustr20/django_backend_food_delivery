@@ -1,5 +1,4 @@
 from django.urls import path
-from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from users.api.views import (
     UserCreateView,
@@ -12,8 +11,7 @@ from users.api.views import (
 )
 
 
-urlpatterns = [
-    #path('auth/me/', UserView.as_view())
+urlpatterns = [    
     path('users/create/', UserCreateView.as_view(), name='user-create'),
     path('users/', UserListView.as_view(), name='user-list'),
     path('users/<int:pk>/', UserDetailView.as_view(), name='user-detail'),

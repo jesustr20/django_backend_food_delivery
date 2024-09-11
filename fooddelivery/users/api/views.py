@@ -1,14 +1,7 @@
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.views import APIView
 from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
 from rest_framework import status, generics
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_str, smart_str
-from django.core.mail import send_mail
-from drf_yasg.utils import swagger_auto_schema
 
 from users.models import User
 from users.api.serializers import (
