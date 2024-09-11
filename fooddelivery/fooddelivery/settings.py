@@ -110,6 +110,9 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':(
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES':(
+        'rest_framework.permissions.IsAuthenticated',
     )
 }
 
@@ -156,3 +159,17 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'tu_correo@gmail.com'
 EMAIL_HOST_PASSWORD = 'tu_contraseña'
 DEFAULT_FROM_EMAIL = 'tu_correo@gmail.com'
+
+#swagger
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization',
+            'description': 'JWT Authorization header using the Bearer scheme. Example: "Bearer {token}"'
+        }
+    },
+    'USE_SESSION_AUTH': False,
+    'VALIDATOR_URL': None,
+}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from .managers import CustomUserManager
 # Create your models here.
 
 class User(AbstractUser):
@@ -8,4 +9,6 @@ class User(AbstractUser):
 
     #Acceder solo con el email
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['username']
+
+    objects = CustomUserManager()
