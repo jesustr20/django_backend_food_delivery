@@ -52,3 +52,8 @@ Creando proyecto con Django:
 creando una app con Django
 
 1.- python3 manage.py startapp <name_app>
+
+### Observaciones
+
+Creare otro feature para modificar la creacion de usuario sea con el email
+tanto en el admin de django asi como en la api del login.
