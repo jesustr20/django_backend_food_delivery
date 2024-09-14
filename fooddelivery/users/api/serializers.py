@@ -32,17 +32,17 @@ class UserCreateSerializer(serializers.ModelSerializer):
 class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name','email']
+        fields = ['id', 'first_name', 'last_name','email', 'phone_number','biography','type_user']
     
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name','email', 'is_active', 'is_staff']
+        fields = ['id', 'first_name', 'last_name','email', 'phone_number','biography','type_user','is_active', 'is_staff']
 
 class UserListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name','email', 'is_active', 'is_staff']
+        fields = ['id', 'first_name', 'last_name','email', 'phone_number','biography','type_user','is_active', 'is_staff']
 
 #Serializador para solicitar el restablecimiento de contraseña
 class PasswordResetRequestSerializer(serializers.Serializer):
