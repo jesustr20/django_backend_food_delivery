@@ -6,8 +6,9 @@ from users.api.views import (
     UserUpdateView,
     UserDeleteView,
     UserListView,
-    PasswordResetRequestView,
-    PasswordResetConfirmView
+    PasswordResetView,
+    CodeVerificationView,
+    PasswordChangeView
 )
 
 
@@ -17,8 +18,9 @@ urlpatterns = [
     path('users/<int:pk>/', UserDetailView.as_view(), name='user-detail'),
     path('users/<int:pk>/update/', UserUpdateView.as_view(), name='user-update'),
     path('users/<int:pk>/delete/', UserDeleteView.as_view(), name='user-delete'),
-    path('password_reset/request', PasswordResetRequestView.as_view(), name='password-reset-request'),
-    path('password_reset/confirm', PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
+    path('password/reset/', PasswordResetView.as_view(), name='password-reset'),
+    path('password/reset-verify/', CodeVerificationView.as_view(), name='password-reset-verify'),
+    path('password/change/', PasswordChangeView.as_view(), name='password-change'),
     path('auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
