@@ -6,6 +6,8 @@ __pycache__/
 db.sqlite3
 media
 /fooddelivery/db.sqlite3
+credenciales.md
+.env
 
 # Backup files # 
 *.bak 
