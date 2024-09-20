@@ -17,10 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny
 
 #from users.api.router import router_user
 
@@ -41,5 +40,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name="schema-swagger-ui"),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name="schema-redoc"),
-    path('api/', include('users.api.router')),    
+    path('api/', include('users.api.router')),
+    path('api/address/', include(('addresses.api.router','addresses'), namespace='addresses')),
 ]

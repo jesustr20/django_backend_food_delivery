@@ -8,7 +8,10 @@ from django.core.mail import send_mail
 from django.conf import settings
 from users.models import User, PasswordResetCode
 from django.utils.text import slugify
-import os
+from addresses.api.serializers import (
+    AddressListSerializer,
+    AddressDetailSerializer
+    )
 
 class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True)
@@ -43,14 +46,16 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         fields = ['id', 'first_name', 'last_name','email', 'phone_number','biography','type_user']
     
 class UserDetailSerializer(serializers.ModelSerializer):
+    addresses = AddressDetailSerializer(many=True, read_only=True, source='address_set')
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name','email', 'phone_number','biography','type_user','is_active', 'is_staff']
+        fields = ['id', 'first_name', 'last_name','email', 'phone_number','biography','type_user','is_active', 'is_staff','addresses']
 
 class UserListSerializer(serializers.ModelSerializer):
+    addresses = AddressListSerializer(many=True, read_only=True, source='address_set')
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name','email', 'phone_number','biography','type_user','is_active', 'is_staff']
+        fields = ['id', 'first_name', 'last_name','email', 'phone_number','biography','type_user','is_active', 'is_staff','addresses']
 
 #Serializador para solicitar el restablecimiento de contraseña
 class PasswordResetRequestSerializer(serializers.Serializer):

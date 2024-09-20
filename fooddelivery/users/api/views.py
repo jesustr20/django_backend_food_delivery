@@ -1,7 +1,7 @@
 from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
-from rest_framework import status, generics
+from rest_framework import generics
 
 from users.models import User
 from users.api.serializers import (
