@@ -80,8 +80,12 @@ Iniciamos nuestro proyecto
 un nuevo "modelo" o se agrego una nueva columna realizar
 las migraciones:
 
+```python
 1.- python3 manage.py makemigrations
+```
+```python
 2.- python3 manage.py migrate
+```
 
 ### Tablas
 - User
