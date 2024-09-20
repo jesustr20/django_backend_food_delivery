@@ -42,4 +42,5 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name="schema-redoc"),
     path('api/', include('users.api.router')),
     path('api/address/', include(('addresses.api.router','addresses'), namespace='addresses')),
+    path('api/rating/', include(('ratings.api.router','ratings'), namespace='ratings')),
 ]
