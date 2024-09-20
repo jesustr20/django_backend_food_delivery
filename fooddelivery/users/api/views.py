@@ -47,7 +47,7 @@ class PasswordResetView(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(request=request)
+        serializer.save()
         return Response({"detail": "Se ha enviado un código de verificación a tu correo electrónico."})
 
 #Paso2: Verificar el código y devolver un token temporal
