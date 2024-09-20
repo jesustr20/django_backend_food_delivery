@@ -75,4 +75,10 @@ Iniciamos nuestro proyecto
 4.- python3 manage.py runserver
 ```
 
-### Soon
+### Nota
+- En cada commit que realice el cual involucre que creo
+un nuevo "modelo" o se agrego una nueva columna realizar
+las migraciones:
+
+1.- python3 manage.py makemigrations
+2.- python3 manage.py migrate
