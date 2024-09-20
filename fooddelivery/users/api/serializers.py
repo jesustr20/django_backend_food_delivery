@@ -4,12 +4,11 @@ from datetime import timedelta
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import AccessToken
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_str
 from django.core.mail import send_mail
 from django.conf import settings
 from users.models import User, PasswordResetCode
+from django.utils.text import slugify
+import os
 
 class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True)
@@ -27,6 +26,15 @@ class UserCreateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data.pop('repeat_password', None)
         validated_data['password'] = make_password(validated_data['password'])
+
+        if not validated_data.get('username'):
+            validated_data['username'] = slugify(validated_data['email'].split('@')[0])
+
+            base_username = validated_data['username']
+            counter = 1
+            while User.objects.filter(username=validated_data['username']).exists():
+                validated_data['username'] = f"{base_username}{counter}"
+                counter += 1
         return User.objects.create(**validated_data)
     
 class UserUpdateSerializer(serializers.ModelSerializer):

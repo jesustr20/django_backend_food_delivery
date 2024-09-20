@@ -47,13 +47,32 @@ poetry env list
 ### Django viene por defecto como base de datos "SQLite"
 Creando proyecto con Django:
 
+```python
 1.- django-admin startproject <name_project>
+```
 
 creando una app con Django
 
-1.- python3 manage.py startapp <name_app>
+```python
+2.- python3 manage.py startapp <name_app>
+```
 
-### Observaciones
+Creando un "suerusuario" de Django
 
-Creare otro feature para modificar la creacion de usuario sea con el email
-tanto en el admin de django asi como en la api del login.
+```python
+3.- python3 manage.py createsuperuser
+```
+
+fields:
+- email
+- username
+- password
+- repeat_password
+
+Iniciamos nuestro proyecto
+
+```python
+4.- python3 manage.py runserver
+```
+
+### Soon
