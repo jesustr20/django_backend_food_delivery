@@ -16,6 +16,10 @@ from ratings.api.serializers import(
     RatingListSerializer,
     RatingDetailSerializer
 )
+from orders.api.serializers import (
+    OrderListSerializer,
+    OrderDetailSerializer
+)
 
 class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True)
@@ -52,16 +56,20 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 class UserDetailSerializer(serializers.ModelSerializer):
     addresses = AddressDetailSerializer(many=True, read_only=True, source='address_set')
     rating = RatingDetailSerializer(many=True, read_only=True, source='rating_set')
+    orders = OrderDetailSerializer(many=True, read_only=True, source='order_set')
+
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name','email', 'phone_number','biography','type_user','is_active', 'is_staff','addresses','rating']
+        fields = ['id', 'first_name', 'last_name','email', 'phone_number','biography','type_user','is_active', 'is_staff','addresses','rating','orders']
 
 class UserListSerializer(serializers.ModelSerializer):
     addresses = AddressListSerializer(many=True, read_only=True, source='address_set')
     rating = RatingListSerializer(many=True, read_only=True, source='rating_set')
+    orders = OrderListSerializer(many=True, read_only=True, source='order_set')
+    
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name','email', 'phone_number','biography','type_user','is_active', 'is_staff','addresses','rating']
+        fields = ['id', 'first_name', 'last_name','email', 'phone_number','biography','type_user','is_active', 'is_staff','addresses','rating','orders']
 
 #Serializador para solicitar el restablecimiento de contraseña
 class PasswordResetRequestSerializer(serializers.Serializer):

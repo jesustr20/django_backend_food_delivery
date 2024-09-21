@@ -43,4 +43,5 @@ urlpatterns = [
     path('api/', include('users.api.router')),
     path('api/address/', include(('addresses.api.router','addresses'), namespace='addresses')),
     path('api/rating/', include(('ratings.api.router','ratings'), namespace='ratings')),
+    path('api/order/', include(('orders.api.router','orders'), namespace='orders')),
 ]
