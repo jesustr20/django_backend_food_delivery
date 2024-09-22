@@ -93,3 +93,4 @@ las migraciones:
 - Rating
 - Order
 - Driver
+- Payment
