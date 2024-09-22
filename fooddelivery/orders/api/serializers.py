@@ -1,5 +1,9 @@
 from rest_framework import serializers
 from orders.models import Order
+from payments.api.serializers import(
+    PaymentListSerializer,
+    PaymentDetailSerializer
+)
 
 class OrderCreateSerializer(serializers.ModelSerializer):
 
@@ -14,12 +18,14 @@ class OrderUpdateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class OrderDetailSerializer(serializers.ModelSerializer):
+    payment = PaymentDetailSerializer(many=True, read_only=True, source='payment_set')
+
     user = serializers.StringRelatedField()
     driver = serializers.StringRelatedField()
 
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = ['id','status','order_total','delivery_status','created_at','updated_at','user','driver','payment']
 
     def get_user(self, obj):
         from users.api.serializers import UserDetailSerializer
@@ -30,12 +36,14 @@ class OrderDetailSerializer(serializers.ModelSerializer):
         return DriverDetailSerializer(obj.driver).data
 
 class OrderListSerializer(serializers.ModelSerializer):
+    payment = PaymentListSerializer(many=True, read_only=True, source='payment_set')
+
     user = serializers.StringRelatedField()
     driver = serializers.StringRelatedField()
 
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = ['id','status','order_total','delivery_status','created_at','updated_at','user','driver','payment']
     
     def get_user(self, obj):
         from users.api.serializers import UserListSerializer

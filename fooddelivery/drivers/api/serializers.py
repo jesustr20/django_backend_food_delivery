@@ -22,11 +22,11 @@ class DriverDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Driver
-        fields = ['name','phone_number','email','location','vehicle_model','vehicle_plate','vehicle_color','orders']
+        fields = ['id','name','phone_number','email','location','vehicle_model','vehicle_plate','vehicle_color','orders']
   
 class DriverListSerializer(serializers.ModelSerializer):
     orders = OrderListSerializer(many=True, read_only=True, source='order_set')
 
     class Meta:
         model = Driver
-        fields = ['name','phone_number','email','location','vehicle_model','vehicle_plate','vehicle_color','orders']
+        fields = ['id','name','phone_number','email','location','vehicle_model','vehicle_plate','vehicle_color','orders']

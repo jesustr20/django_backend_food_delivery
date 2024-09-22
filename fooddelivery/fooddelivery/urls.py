@@ -45,4 +45,5 @@ urlpatterns = [
     path('api/rating/', include(('ratings.api.router','ratings'), namespace='ratings')),
     path('api/order/', include(('orders.api.router','orders'), namespace='orders')),
     path('api/driver/', include(('drivers.api.router','drivers'), namespace='drivers')),
+    path('api/payment/', include(('payments.api.router','payments'), namespace='payments')),
 ]
