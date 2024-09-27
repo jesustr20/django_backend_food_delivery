@@ -18,7 +18,7 @@ class OrderUpdateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class OrderDetailSerializer(serializers.ModelSerializer):
-    payment = PaymentDetailSerializer(many=True, read_only=True, source='payment_set')
+    payment = PaymentDetailSerializer(many=True, read_only=True)
 
     user = serializers.StringRelatedField()
     driver = serializers.StringRelatedField()
@@ -36,7 +36,7 @@ class OrderDetailSerializer(serializers.ModelSerializer):
         return DriverDetailSerializer(obj.driver).data
 
 class OrderListSerializer(serializers.ModelSerializer):
-    payment = PaymentListSerializer(many=True, read_only=True, source='payment_set')
+    payment = PaymentListSerializer(many=True, read_only=True)
 
     user = serializers.StringRelatedField()
     driver = serializers.StringRelatedField()

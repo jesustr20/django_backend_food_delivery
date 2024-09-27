@@ -9,7 +9,7 @@ class Address(models.Model):
     department = models.CharField(max_length=255, blank=True)
     country = models.CharField(max_length=255, blank=True)
     postal_code = models.CharField(max_length=20, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="addresses")
     
     def __str__(self) -> str:
         return f"{self.address}, {self.district}"
