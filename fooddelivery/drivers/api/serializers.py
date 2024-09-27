@@ -18,14 +18,14 @@ class DriverUpdateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class DriverDetailSerializer(serializers.ModelSerializer):
-    orders = OrderDetailSerializer(many=True, read_only=True, source='order_set')
+    orders = OrderDetailSerializer(many=True, read_only=True)
 
     class Meta:
         model = Driver
         fields = ['id','name','phone_number','email','location','vehicle_model','vehicle_plate','vehicle_color','orders']
   
 class DriverListSerializer(serializers.ModelSerializer):
-    orders = OrderListSerializer(many=True, read_only=True, source='order_set')
+    orders = OrderListSerializer(many=True, read_only=True)
 
     class Meta:
         model = Driver
