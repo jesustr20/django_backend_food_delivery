@@ -22,10 +22,11 @@ class OrderDetailSerializer(serializers.ModelSerializer):
 
     user = serializers.StringRelatedField()
     driver = serializers.StringRelatedField()
+    restaurant = serializers.StringRelatedField()
 
     class Meta:
         model = Order
-        fields = ['id','status','order_total','delivery_status','created_at','updated_at','user','driver','payment']
+        fields = ['id','status','order_total','delivery_status','created_at','updated_at','user','driver','payment','restaurant']
 
     def get_user(self, obj):
         from users.api.serializers import UserDetailSerializer
@@ -34,16 +35,21 @@ class OrderDetailSerializer(serializers.ModelSerializer):
     def get_driver(self, obj):
         from drivers.api.serializers import DriverDetailSerializer
         return DriverDetailSerializer(obj.driver).data
+    
+    def get_restaurant(self, obj):
+        from restaurants.api.serializers import RestaurantDetailSerializer
+        return RestaurantDetailSerializer(obj.restaurant).data
 
 class OrderListSerializer(serializers.ModelSerializer):
     payment = PaymentListSerializer(many=True, read_only=True)
 
     user = serializers.StringRelatedField()
     driver = serializers.StringRelatedField()
+    restaurant = serializers.StringRelatedField()
 
     class Meta:
         model = Order
-        fields = ['id','status','order_total','delivery_status','created_at','updated_at','user','driver','payment']
+        fields = ['id','status','order_total','delivery_status','created_at','updated_at','user','driver','payment','restaurant']
     
     def get_user(self, obj):
         from users.api.serializers import UserListSerializer
@@ -52,3 +58,7 @@ class OrderListSerializer(serializers.ModelSerializer):
     def get_driver(self, obj):
         from drivers.api.serializers import DriverListSerializer
         return DriverListSerializer(obj.driver).data
+    
+    def get_restaurant(self, obj):
+        from restaurants.api.serializers import RestaurantListSerializer
+        return RestaurantListSerializer(obj.restaurant).data
