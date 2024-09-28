@@ -94,3 +94,5 @@ las migraciones:
 - Order
 - Driver
 - Payment
+- Restaurant
+- Menu
