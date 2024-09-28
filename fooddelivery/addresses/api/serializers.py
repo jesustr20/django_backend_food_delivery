@@ -15,6 +15,7 @@ class AddressUpdateSerializer(serializers.ModelSerializer):
 
 class AddressDetailSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
+    restaurant = serializers.StringRelatedField()
 
     class Meta:
         model = Address
@@ -23,9 +24,14 @@ class AddressDetailSerializer(serializers.ModelSerializer):
     def get_user(self, obj):
         from users.api.serializers import UserDetailSerializer
         return UserDetailSerializer(obj.user).data
+    
+    def get_restaurant(self, obj):
+        from restaurants.api.serializers import RestaurantDetailSerializer
+        return RestaurantDetailSerializer(obj.restaurant).data
 
 class AddressListSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
+    restaurant = serializers.StringRelatedField()
 
     class Meta:
         model = Address
@@ -34,3 +40,7 @@ class AddressListSerializer(serializers.ModelSerializer):
     def get_user(self, obj):
         from users.api.serializers import UserListSerializer
         return UserListSerializer(obj.user).data
+
+    def get_restaurant(self, obj):
+        from restaurants.api.serializers import RestaurantListSerializer
+        return RestaurantListSerializer(obj.restaurant).data

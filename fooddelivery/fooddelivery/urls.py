@@ -46,4 +46,5 @@ urlpatterns = [
     path('api/order/', include(('orders.api.router','orders'), namespace='orders')),
     path('api/driver/', include(('drivers.api.router','drivers'), namespace='drivers')),
     path('api/payment/', include(('payments.api.router','payments'), namespace='payments')),
+    path('api/restaurant/', include(('restaurants.api.router','restaurants'), namespace='restaurants')),
 ]

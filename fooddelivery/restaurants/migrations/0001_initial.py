@@ -12,16 +12,12 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Driver',
+            name='Restaurant',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255)),
+                ('address', models.CharField(max_length=255)),
                 ('phone_number', models.CharField(max_length=20)),
-                ('email', models.CharField(max_length=20)),
-                ('location', models.CharField(max_length=255)),
-                ('vehicle_model', models.CharField(max_length=100)),
-                ('vehicle_plate', models.CharField(max_length=10)),
-                ('vehicle_color', models.CharField(max_length=20)),
             ],
         ),
     ]
