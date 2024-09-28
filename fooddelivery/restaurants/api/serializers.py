@@ -14,6 +14,11 @@ from addresses.api.serializers import (
     AddressDetailSerializer
 )
 
+from menus.api.serializers import(
+    MenuListSerializer,
+    MenuDetailSerializer
+)
+
 class RestaurantCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -30,16 +35,18 @@ class RestaurantDetailSerializer(serializers.ModelSerializer):
     orders = OrderDetailSerializer(many=True, read_only=True)
     ratings = RatingDetailSerializer(many=True, read_only=True)
     addresses = AddressDetailSerializer(many=True, read_only=True)
+    menu = MenuDetailSerializer(many=True, read_only=True)
 
     class Meta:
         model = Restaurant
-        fields = ['id','name','address','phone_number','orders','ratings','addresses']
+        fields = ['id','name','address','phone_number','orders','ratings','addresses','menu']
 
 class RestaurantListSerializer(serializers.ModelSerializer):
     orders = OrderListSerializer(many=True, read_only=True)
     ratings = RatingListSerializer(many=True, read_only=True)
     addresses = AddressListSerializer(many=True, read_only=True)
+    menu = MenuListSerializer(many=True, read_only=True)
 
     class Meta:
         model = Restaurant
-        fields = ['id','name','address','phone_number','orders','ratings','addresses']
+        fields = ['id','name','address','phone_number','orders','ratings','addresses','menu']
