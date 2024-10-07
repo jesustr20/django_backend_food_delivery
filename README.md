@@ -75,6 +75,16 @@ Iniciamos nuestro proyecto
 4.- python3 manage.py runserver
 ```
 
+### Panel admin de Django
+```python
+http://127.0.0.1:8000/admin/
+```
+
+### Api Swagger
+```python
+http://127.0.0.1:8000/docs/
+```
+
 ### Nota
 - En cada commit que realice el cual involucre que creo
 un nuevo "modelo" o se agrego una nueva columna realizar
@@ -89,10 +99,85 @@ las migraciones:
 
 ### Tablas
 - User
+    - lastname
+    - firstname
+    - email
+    - phone_number
+    - biography
+    - type_user'
+
 - Address
+    - address
+    - district
+    - province
+    - department
+    - country
+    - postal_code
+    - user
+    - restaurant
+
 - Rating
+    - score
+    - comment
+    - user
+    - restaurant
+
 - Order
+    - status
+    - order_total
+    - delivery_status
+    - created_at
+    - updated_at
+    - user
+    - driver
+    - restaurant
+
 - Driver
+    - name
+    - phone_number
+    - email
+    - location
+    - vehicle_model
+    - vehicle_plate
+    - vehicle_color
+
 - Payment
+    - amount
+    - payment_method
+    - status
+    - order
+
 - Restaurant
+    - name
+    - address
+    - phone_number
+
 - Menu
+    - name
+    - description
+    - restaurant
+
+### Se agrego DJango_extensions
+
+El uso de este shell ayuda en la interactuación con los modelos y evitar las importaciones dentro del mismo shell (un poco al estilo de ruby on rails)
+
+Para acceder:
+
+```python
+2.- python3 manage.py shell_plus
+```
+
+Documentation: ```https://django-extensions.readthedocs.io/en/latest/installation_instructions.html```
+
+### Creacion de archivo para borrar el pycache y las migraciones (temporalmente)
+
+El archivo se llama clean_files_temp.py para eliminar las carpetas "__pycache__" y los archivos de migracion que estan dentro de la carpeta "migrations", es temporal el borrado de los archivos de migracion hasta que encuentre una forma de hacer migraciones sin necesidad de borrar todo.
+
+para correrlo:
+
+```python
+1.- python3 clean_files_temp.py
+2,. python3 manage.py makemigrations
+3.- python3 manage.py migrate
+4.- python3 manage.py createsuperuser
+```
