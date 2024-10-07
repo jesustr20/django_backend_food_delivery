@@ -1,10 +1,11 @@
 from django.db import models
+from mixins import InspectableModel
 from users.models import User
 from drivers.models import Driver
 from restaurants.models import Restaurant
 # Create your models here.
 
-class Order(models.Model):
+class Order(InspectableModel, models.Model):
     status = models.CharField(max_length=50)
     order_total = models.IntegerField(null=True)
     delivery_status = models.CharField(max_length=50)
