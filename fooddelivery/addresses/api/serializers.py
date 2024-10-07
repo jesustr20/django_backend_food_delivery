@@ -14,33 +14,45 @@ class AddressUpdateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class AddressDetailSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField()
-    restaurant = serializers.StringRelatedField()
+    
+    content_object = serializers.SerializerMethodField()
 
     class Meta:
         model = Address
         fields = '__all__'
     
-    def get_user(self, obj):
-        from users.api.serializers import UserDetailSerializer
-        return UserDetailSerializer(obj.user).data
-    
-    def get_restaurant(self, obj):
-        from restaurants.api.serializers import RestaurantDetailSerializer
-        return RestaurantDetailSerializer(obj.restaurant).data
+    def get_content_object(self, obj):
+        content_object = obj.content_object
+
+        if isinstance(content_object, Restaurant):
+            from restaurants.models import Restaurant
+            from restaurants.api.serializers import RestaurantDetailSerializer
+            return RestaurantDetailSerializer(content_object).data
+        elif isinstance(content_object, User):
+            from users.models import User
+            from users.api.serializers import UserDetailSerializer
+            return UserDetailSerializer(content_object).data
+        else:
+            return None
 
 class AddressListSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField()
-    restaurant = serializers.StringRelatedField()
+    
+    content_object = serializers.SerializerMethodField()
 
     class Meta:
         model = Address
         fields = '__all__'
 
-    def get_user(self, obj):
-        from users.api.serializers import UserListSerializer
-        return UserListSerializer(obj.user).data
+    def get_content_object(self, obj):
+        content_object = obj.content_object
 
-    def get_restaurant(self, obj):
-        from restaurants.api.serializers import RestaurantListSerializer
-        return RestaurantListSerializer(obj.restaurant).data
+        if isinstance(content_object, Restaurant):
+            from restaurants.models import Restaurant
+            from restaurants.api.serializers import RestaurantDetailSerializer
+            return RestaurantDetailSerializer(content_object).data
+        elif isinstance(content_object, User):
+            from users.models import User
+            from users.api.serializers import UserDetailSerializer
+            return UserDetailSerializer(content_object).data
+        else:
+            return None

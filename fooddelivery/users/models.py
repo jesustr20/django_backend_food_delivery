@@ -1,11 +1,12 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
+from mixins import InspectableModel
 from .managers import CustomUserManager
 from .enums import UserTypeEnum
 # Create your models here.
 
-class User(AbstractUser):
+class User(InspectableModel, AbstractUser):
     email = models.EmailField(unique=True)
     #Agregar phone y type_user
     phone_number = models.CharField(max_length=9, blank=True)
@@ -20,7 +21,7 @@ class User(AbstractUser):
 
     objects = CustomUserManager ()
 
-class PasswordResetCode(models.Model):
+class PasswordResetCode(InspectableModel, models.Model):
     email = models.EmailField()
     code = models.CharField(max_length=4)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -1,7 +1,8 @@
 from django.db import models
+from mixins import InspectableModel
 
 # Create your models here.
-class Driver(models.Model):
+class Driver(InspectableModel, models.Model):
     name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=20)
     email = models.CharField(max_length=20)
